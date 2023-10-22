@@ -16,7 +16,7 @@ const handleDelete = (id)=>{
 
       //remove thw user from ui
 
-      const remainingUsers = users.filter(user=>user._id === id);
+      const remainingUsers = users.filter(user=>user._id !== id);
 setUser(remainingUsers)
     }
   })
