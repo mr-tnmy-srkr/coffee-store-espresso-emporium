@@ -27,7 +27,7 @@ const AddCoffee = () => {
     // no. 1 send data to the server (Create)
 
     fetch(
-      "http://localhost:5000/coffee",
+      "https://coffee-store-espresso-emporium-server-neon.vercel.app/coffee",
       {
         method: "POST",
         headers: {

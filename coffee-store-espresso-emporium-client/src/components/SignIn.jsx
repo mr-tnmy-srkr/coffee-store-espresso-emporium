@@ -22,13 +22,16 @@ const SignIn = () => {
         };
         //update lastLoggedAt in the database
 
-        fetch("http://localhost:5000/user", {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(user),
-        })
+        fetch(
+          "https://coffee-store-espresso-emporium-server-neon.vercel.app/user",
+          {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

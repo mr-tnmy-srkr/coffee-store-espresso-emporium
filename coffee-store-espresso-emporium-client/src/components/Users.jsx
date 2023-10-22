@@ -3,25 +3,27 @@ import { useLoaderData } from "react-router-dom";
 
 const Users = () => {
   const loadedUsers = useLoaderData();
-  const [users,setUser] =  useState(loadedUsers);
+  const [users, setUser] = useState(loadedUsers);
 
-const handleDelete = (id)=>{
-  fetch(`http://localhost:5000/user/${id}`,{
-    method: 'DELETE',
-  })
-  .then(res=>res.json())
-  .then(data=>{
-    if(data.deletedCount>0){
-      alert('cart item delete successful');
+  const handleDelete = (id) => {
+    fetch(
+      `https://coffee-store-espresso-emporium-server-neon.vercel.app/user/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          alert("cart item delete successful");
 
-      //remove thw user from ui
+          //remove thw user from ui
 
-      const remainingUsers = users.filter(user=>user._id !== id);
-setUser(remainingUsers)
-    }
-  })
-
-}
+          const remainingUsers = users.filter((user) => user._id !== id);
+          setUser(remainingUsers);
+        }
+      });
+  };
 
   return (
     <div>
@@ -41,16 +43,22 @@ setUser(remainingUsers)
             </tr>
           </thead>
           <tbody className="table">
-              {users.map((user,idx) => (
-                <tr key={user._id} className="space-y-4">
-                  <th className="h-[]">{idx+1}</th>
-                  <td className="h-[]">{user.email}</td>
-                  <td className="h-[]">{user.createdAt}</td>
-                  <td className="h-[]">{user.lastLoggedAt}</td>
-                  <td><button onClick={()=>handleDelete(user._id)} className="btn btn-sm bg-red-500 text-white">X</button></td>
-                </tr>
-              ))}
-           
+            {users.map((user, idx) => (
+              <tr key={user._id} className="space-y-4">
+                <th className="h-[]">{idx + 1}</th>
+                <td className="h-[]">{user.email}</td>
+                <td className="h-[]">{user.createdAt}</td>
+                <td className="h-[]">{user.lastLoggedAt}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(user._id)}
+                    className="btn btn-sm bg-red-500 text-white"
+                  >
+                    X
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

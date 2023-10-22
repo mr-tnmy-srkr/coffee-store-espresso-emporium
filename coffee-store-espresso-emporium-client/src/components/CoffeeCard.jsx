@@ -19,9 +19,12 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
       if (result.isConfirmed) {
         console.log("delete confirm");
         // no. 9 client side e delete
-        fetch(`http://localhost:5000/coffee/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://coffee-store-espresso-emporium-server-neon.vercel.app/coffee/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

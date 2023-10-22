@@ -18,13 +18,16 @@ const SignUp = () => {
         //M-56-5-3
         const createdAt = result.user.metadata?.creationTime;
         const user = { email, createdAt: createdAt };
-        fetch("http://localhost:5000/user", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
-        })
+        fetch(
+          "https://coffee-store-espresso-emporium-server-neon.vercel.app/user",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.insertedId) {

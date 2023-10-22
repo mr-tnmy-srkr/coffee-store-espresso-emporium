@@ -47,7 +47,7 @@ async function run() {
     });
 
     // no. 10 akhon update korte hobe tai server e particular id r info pete hobe
-    //http://localhost:5000/coffee/652b79ca88d41efc0de10e3d
+    //https://coffee-store-espresso-emporium-server-neon.vercel.app/coffee/652b79ca88d41efc0de10e3d
     //,, find a document   (Update)
     // https://www.mongodb.com/docs/drivers/node/current/usage-examples/findOne/
     app.get("/coffee/:id", async (req, res) => {
@@ -139,7 +139,7 @@ async function run() {
     });
 
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
