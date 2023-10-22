@@ -32,9 +32,10 @@ setUser(remainingUsers)
         <table className="table border-4 static w-[50vw] mx-auto ">
           {/* head */}
           <thead className="">
-            <tr className="bg-green-400 flex text-right">
+            <tr className="bg-green-400 text-black flex text-right">
               <th className=" ">Serial</th>
-              <th className=" w-[15%] ">Email</th>
+              <th className="flex-1 pr-8">Email</th>
+              <th className="flex-1 ">Created At</th>
               <th className="flex-1 ">Created At</th>
               <th className="flex-1">Action</th>
             </tr>
@@ -42,9 +43,10 @@ setUser(remainingUsers)
           <tbody className="table">
               {users.map((user,idx) => (
                 <tr key={user._id} className="space-y-4">
-                  <th className="w-[]">{idx+1}</th>
-                  <td className="q-[50%]">{user.email}</td>
-                  <td className="w-[60%]">{user.createdAt}</td>
+                  <th className="h-[]">{idx+1}</th>
+                  <td className="h-[]">{user.email}</td>
+                  <td className="h-[]">{user.createdAt}</td>
+                  <td className="h-[]">{user.lastLoggedAt}</td>
                   <td><button onClick={()=>handleDelete(user._id)} className="btn btn-sm bg-red-500 text-white">X</button></td>
                 </tr>
               ))}
