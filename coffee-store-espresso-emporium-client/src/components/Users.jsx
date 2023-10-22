@@ -1,33 +1,53 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const Users = () => {
   const loadedUsers = useLoaderData();
+  const [users,setUser] =  useState(loadedUsers);
+
+const handleDelete = (id)=>{
+  fetch(`http://localhost:5000/user/${id}`,{
+    method: 'DELETE',
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    if(data.deletedCount>0){
+      alert('cart item delete successful');
+
+      //remove thw user from ui
+
+      const remainingUsers = users.filter(user=>user._id === id);
+setUser(remainingUsers)
+    }
+  })
+
+}
+
   return (
     <div>
       <h2 className="text-3xl font-bold text-center my-8">
         Loaded users : {loadedUsers.length}
       </h2>
       <div className="overflow-x-auto">
-        <table className="table border-4 static w-auto">
+        <table className="table border-4 static w-[50vw] mx-auto ">
           {/* head */}
-          <thead>
-            <tr className="bg-green-400">
-              <th>Email</th>
-              <th>Created At</th>
-              <th>Action</th>
+          <thead className="">
+            <tr className="bg-green-400 flex text-right">
+              <th className=" ">Serial</th>
+              <th className=" w-[15%] ">Email</th>
+              <th className="flex-1 ">Created At</th>
+              <th className="flex-1">Action</th>
             </tr>
           </thead>
           <tbody className="table">
-           
-            <tr className="">
-              {loadedUsers.map((user,idx) => (
-                <tr key={user._id}>
-                  <th>{idx+1}</th>
-                  <td>{user.email}</td>
-                  <td>{user.createdAt}</td>
+              {users.map((user,idx) => (
+                <tr key={user._id} className="space-y-4">
+                  <th className="w-[]">{idx+1}</th>
+                  <td className="q-[50%]">{user.email}</td>
+                  <td className="w-[60%]">{user.createdAt}</td>
+                  <td><button onClick={()=>handleDelete(user._id)} className="btn btn-sm bg-red-500 text-white">X</button></td>
                 </tr>
               ))}
-            </tr>
            
           </tbody>
         </table>
