@@ -6,6 +6,7 @@ import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 import Root from "../components/Root";
 import Users from "../components/Users";
+import Users2 from "../components/Users2";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
           fetch(
             "https://coffee-store-espresso-emporium-server-neon.vercel.app/user"
           ),
+      },
+      {
+        path: "/users2",
+        element: <Users2></Users2>,
+       
       },
     ],
   },
